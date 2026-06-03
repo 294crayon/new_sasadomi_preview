@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>세종과학예술영재학교 기숙사</title>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');</style>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- PC 래퍼 -->
+  <div id="pc-shell">
+    <div id="pc-left">
+      <img src="로고6.png" alt="세종과학예술영재학교" id="pc-logo">
+      <p class="pc-tagline">기숙사 생활 관리 앱</p>
+      <div class="pc-store-badges">
+        <div class="store-badge">App Store</div>
+        <div class="store-badge">Google Play</div>
+      </div>
+    </div>
+    <div id="phone-frame">
+      <div id="phone-screen">
+        <div id="island-bar"><div id="dynamic-island"></div></div>
+
+        <!-- 상단 헤더 -->
+        <header id="top-bar">
+          <div id="header-logo">
+            <img src="로고6.png" alt="SAS" id="header-logo-img">
+          </div>
+          <button id="profile-btn" onclick="showPage('mypage')">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          </button>
+        </header>
+
+        <!-- 페이지 영역 -->
+        <div id="pages">
+
+          <!-- 홈 -->
+          <section id="home" class="page active">
+            <div class="home-greeting">
+              <div class="greeting-text">
+                <span class="greeting-sub">안녕하세요</span>
+                <span class="greeting-name">홍길동 님</span>
+                <span class="greeting-detail">2학년 1반 15번 · <span id="today-date"></span></span>
+              </div>
+            </div>
+
+            <div class="card points-card">
+              <div class="card-label">상·벌점 현황</div>
+              <div class="points-row">
+                <div class="point-item plus">
+                  <span class="point-num">12</span>
+                  <span class="point-tag">상점</span>
+                </div>
+                <div class="point-divider"></div>
+                <div class="point-item minus">
+                  <span class="point-num">3</span>
+                  <span class="point-tag">벌점</span>
+                </div>
+                <div class="point-divider"></div>
+                <div class="point-item streak">
+                  <span class="point-num">14</span>
+                  <span class="point-tag">연속 무벌점</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-label">최근 자율학습</span>
+                <button class="card-more" onclick="showPage('study')">더보기</button>
+              </div>
+              <ul class="item-list">
+                <li class="item-row"><span class="item-main">06-01 · 학습I · 정독실</span><span class="tag-approved">승인</span></li>
+                <li class="item-row"><span class="item-main">05-30 · 학습II · 본관</span><span class="tag-approved">승인</span></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-label">최근 외출·외박</span>
+                <button class="card-more" onclick="showPage('outing')">더보기</button>
+              </div>
+              <p class="empty-msg">최근 신청 내역이 없습니다.</p>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <span class="card-label">공지사항</span>
+                <button class="card-more" onclick="showPage('notice')">더보기</button>
+              </div>
+              <ul class="item-list">
+                <li class="item-row"><span class="item-main">기숙사 점검 안내</span><span class="item-date">06-01</span></li>
+                <li class="item-row"><span class="item-main">여름방학 일정 공지</span><span class="item-date">05-28</span></li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- 공지사항 -->
+          <section id="notice" class="page">
+            <div class="page-header">
+              <h2>공지사항</h2>
+            </div>
+            <div class="notice-filter">
+              <button class="filter-btn active" onclick="filterNotice('all', this)">전체</button>
+              <button class="filter-btn" onclick="filterNotice('pinned', this)">공지</button>
+              <button class="filter-btn" onclick="filterNotice('general', this)">일반</button>
+            </div>
+            <ul class="notice-list">
+              <li class="notice-item pinned">
+                <span class="notice-badge">공지</span>
+                <div class="notice-content">
+                  <span class="notice-title">기숙사 이용 수칙 안내</span>
+                  <span class="notice-meta">관리자 · 2025-05-01</span>
+                </div>
+              </li>
+              <li class="notice-item pinned">
+                <span class="notice-badge">공지</span>
+                <div class="notice-content">
+                  <span class="notice-title">2025년 생활관 규정 개정</span>
+                  <span class="notice-meta">관리자 · 2025-03-02</span>
+                </div>
+              </li>
+              <li class="notice-item">
+                <div class="notice-content">
+                  <span class="notice-title">6월 기숙사 점검 일정</span>
+                  <span class="notice-meta">관리자 · 2025-06-01</span>
+                </div>
+                <span class="notice-views">88</span>
+              </li>
+              <li class="notice-item">
+                <div class="notice-content">
+                  <span class="notice-title">5월 냉방 운영 시작 안내</span>
+                  <span class="notice-meta">관리자 · 2025-05-20</span>
+                </div>
+                <span class="notice-views">145</span>
+              </li>
+            </ul>
+            <div class="pagination">
+              <button class="pg-btn pg-active">1</button>
+              <button class="pg-btn">2</button>
+              <button class="pg-btn">3</button>
+            </div>
+            <div class="search-bar-bottom">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="공지사항 검색">
+            </div>
+          </section>
+
+          <!-- 외출·외박 -->
+          <section id="outing" class="page">
+            <div class="page-header">
+              <h2>외출·외박</h2>
+              <button class="fab-inline" onclick="openModal('outing-modal')">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                신청
+              </button>
+            </div>
+            <ul class="record-list">
+              <li class="record-item">
+                <div class="record-top">
+                  <span class="record-type-badge out">외출</span>
+                  <span class="tag-approved">승인</span>
+                </div>
+                <div class="record-time">06-01 14:00 ~ 18:00</div>
+                <div class="record-reason">병원 진료</div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 학습 -->
+          <section id="study" class="page">
+            <div class="page-header">
+              <h2>학습</h2>
+              <button class="fab-inline" onclick="openModal('study-modal')">
+                <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                신청
+              </button>
+            </div>
+            <ul class="record-list">
+              <li class="record-item">
+                <div class="record-top">
+                  <span class="record-type-badge study">학습I</span>
+                  <span class="tag-approved">승인</span>
+                </div>
+                <div class="record-time">06-01 · 정독실</div>
+                <div class="record-reason">개인 학습</div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 상·벌점 -->
+          <section id="points" class="page">
+            <div class="page-header">
+              <h2>상·벌점</h2>
+              <button class="fab-inline" onclick="openModal('volunteer-modal')">봉사 신청</button>
+            </div>
+
+            <!-- 무벌점 스트릭 -->
+            <div class="card streak-card">
+              <div class="streak-row">
+                <div class="streak-item">
+                  <span class="streak-num">14</span>
+                  <span class="streak-label">연속 무벌점</span>
+                </div>
+                <div class="streak-divider"></div>
+                <div class="streak-item">
+                  <span class="streak-num">7</span>
+                  <span class="streak-label">호실 무벌점</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 요약 -->
+            <div class="card points-summary-card">
+              <div class="ps-item plus">
+                <span class="ps-num">12</span><span class="ps-label">상점</span>
+              </div>
+              <div class="ps-item minus">
+                <span class="ps-num">3</span><span class="ps-label">벌점</span>
+              </div>
+            </div>
+
+            <!-- 보기 전환 -->
+            <div class="view-toggle">
+              <button class="vt-btn active" onclick="setView('all', this)">모아보기</button>
+              <button class="vt-btn" onclick="setView('plus', this)">상점</button>
+              <button class="vt-btn" onclick="setView('minus', this)">벌점</button>
+            </div>
+
+            <ul class="points-list" id="points-list">
+              <li class="points-item" data-type="plus">
+                <div class="pi-left">
+                  <span class="pi-score plus-score">+3</span>
+                  <div class="pi-info">
+                    <span class="pi-title">봉사활동 참여</span>
+                    <span class="pi-date">2025-05-20</span>
+                  </div>
+                </div>
+              </li>
+              <li class="points-item" data-type="plus">
+                <div class="pi-left">
+                  <span class="pi-score plus-score">+5</span>
+                  <div class="pi-info">
+                    <span class="pi-title">교내 대회 수상</span>
+                    <span class="pi-date">2025-04-15</span>
+                  </div>
+                </div>
+              </li>
+              <li class="points-item" data-type="minus">
+                <div class="pi-left">
+                  <span class="pi-score minus-score">-2</span>
+                  <div class="pi-info">
+                    <span class="pi-title">소등 후 소음</span>
+                    <span class="pi-date">2025-05-22</span>
+                  </div>
+                </div>
+              </li>
+              <li class="points-item" data-type="minus">
+                <div class="pi-left">
+                  <span class="pi-score minus-score">-1</span>
+                  <div class="pi-info">
+                    <span class="pi-title">점호 불참</span>
+                    <span class="pi-date">2025-05-15</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 마이페이지 -->
+          <section id="mypage" class="page">
+            <div class="page-header">
+              <h2>마이페이지</h2>
+            </div>
+            <div class="profile-card">
+              <div class="profile-avatar">홍</div>
+              <div class="profile-info">
+                <span class="profile-name">홍길동</span>
+                <span class="profile-detail">2학년 1반 15번</span>
+              </div>
+            </div>
+            <ul class="settings-list">
+              <li class="settings-item" onclick="toggleTheme()">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <span>다크 모드</span>
+                <div class="toggle-switch" id="theme-toggle"><div class="toggle-knob"></div></div>
+              </li>
+              <li class="settings-item">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>비밀번호 변경</span>
+                <svg class="arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </li>
+              <li class="settings-item danger">
+                <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>로그아웃</span>
+                <svg class="arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </li>
+            </ul>
+          </section>
+
+        </div><!-- /pages -->
+
+        <!-- 하단 탭바 -->
+        <nav id="tab-bar">
+          <button class="tab-item active" onclick="showPage('home')" data-page="home">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>홈</span>
+          </button>
+          <button class="tab-item" onclick="showPage('notice')" data-page="notice">
+            <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>공지</span>
+          </button>
+          <button class="tab-item" onclick="showPage('outing')" data-page="outing">
+            <svg viewBox="0 0 24 24"><path d="M3 22V8l9-6 9 6v14"/><path d="M9 22V16h6v6"/><rect x="9" y="10" width="2" height="2"/><rect x="13" y="10" width="2" height="2"/></svg>
+            <span>외출·외박</span>
+          </button>
+          <button class="tab-item" onclick="showPage('study')" data-page="study">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>학습</span>
+          </button>
+          <button class="tab-item" onclick="showPage('points')" data-page="points">
+            <svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            <span>상·벌점</span>
+          </button>
+        </nav>
+
+      </div><!-- /phone-screen -->
+    </div><!-- /phone-frame -->
+  </div><!-- /pc-shell -->
+
+  <!-- 모달: 외출·외박 신청 -->
+  <div id="outing-modal" class="modal hidden">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <span>외출·외박 신청</span>
+        <button class="modal-close" onclick="closeModal('outing-modal')">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>구분</label>
+          <div class="seg-control">
+            <button class="seg-btn active" onclick="setSeg(this)">외출</button>
+            <button class="seg-btn" onclick="setSeg(this)">외박</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>시작 날짜</label>
+          <input type="date" id="out-start-date">
+        </div>
+        <div class="form-group">
+          <label>시작 시간</label>
+          <select id="out-start-time">
+            <option value="">시간 선택</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>종료 날짜</label>
+          <input type="date" id="out-end-date">
+        </div>
+        <div class="form-group">
+          <label>종료 시간</label>
+          <select id="out-end-time">
+            <option value="">시간 선택</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>사유</label>
+          <textarea id="out-reason" placeholder="사유를 입력하세요"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-submit" id="outing-submit" onclick="submitOuting()">신청</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모달: 학습 신청 -->
+  <div id="study-modal" class="modal hidden">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <span>학습 신청</span>
+        <button class="modal-close" onclick="closeModal('study-modal')">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="seg-control" id="study-type-seg">
+          <button class="seg-btn active" onclick="switchStudyType('bonkwan')">본관신청</button>
+          <button class="seg-btn" onclick="switchStudyType('yoyang')">요양신청</button>
+        </div>
+
+        <!-- 본관신청 폼 -->
+        <div id="bonkwan-form">
+          <div class="form-group">
+            <label>날짜</label>
+            <input type="date" id="study-date">
+          </div>
+          <div class="form-group">
+            <label>시간</label>
+            <select id="study-time">
+              <option value="">시간 선택</option>
+              <option value="오후">오후</option>
+              <option value="학습 I">학습 I</option>
+              <option value="학습 II">학습 II</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>지도교사</label>
+            <select id="study-teacher">
+              <option value="" disabled selected>선생님 선택</option>
+              <optgroup label="최근 등록">
+                <option value="김철수">김철수 선생님</option>
+                <option value="이영희">이영희 선생님</option>
+              </optgroup>
+              <optgroup label="전체">
+                <option value="박민준">박민준 선생님</option>
+                <option value="최수진">최수진 선생님</option>
+                <option value="정우성">정우성 선생님</option>
+                <option value="휴일도서관">휴일도서관</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>장소</label>
+            <input type="text" id="study-place" placeholder="이용 장소를 입력하세요">
+          </div>
+          <div class="form-group">
+            <label>사유</label>
+            <textarea id="study-reason" placeholder="사유를 입력하세요"></textarea>
+          </div>
+          <div class="modal-footer" style="padding: 0;">
+            <button class="btn-submit" id="study-submit" onclick="submitStudy()">등록</button>
+          </div>
+        </div>
+
+        <!-- 요양신청 폼 -->
+        <div id="yoyang-form" class="hidden">
+          <div class="form-group">
+            <label>날짜</label>
+            <input type="date" id="yoyang-date">
+          </div>
+          <div class="form-group">
+            <label>시간</label>
+            <select id="yoyang-time">
+              <option value="">시간 선택</option>
+              <option value="오후">오후</option>
+              <option value="학습 I">학습 I</option>
+              <option value="학습 II">학습 II</option>
+            </select>
+          </div>
+          <p class="yoyang-info">이번 주 남은 요양 횟수: 3회 (주말 제외, 주 3회 기본)</p>
+          <div class="modal-footer" style="padding: 0;">
+            <button class="btn-submit" id="yoyang-submit" onclick="submitYoyang()">등록</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모달: 봉사 신청 (추후 구성) -->
+  <div id="volunteer-modal" class="modal hidden">
+    <div class="modal-sheet">
+      <div class="sheet-handle"></div>
+      <div class="modal-header">
+        <span>봉사 신청</span>
+        <button class="modal-close" onclick="closeModal('volunteer-modal')">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="coming-soon">봉사 신청 기능은 준비 중입니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
