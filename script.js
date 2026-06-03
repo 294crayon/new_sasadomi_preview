@@ -112,11 +112,63 @@ function switchStudyType(type) {
 
 // ── 신청 처리 ──
 function submitOuting() {
-  alert('외출·외박 신청이 완료되었습니다.');
+  const type = document.querySelector('#outing-modal .seg-btn.active').textContent.trim();
+  const startDate = document.getElementById('out-start-date').value;
+  const startTime = document.getElementById('out-start-time').value;
+  const endDate = document.getElementById('out-end-date').value;
+  const endTime = document.getElementById('out-end-time').value;
+  const reason = document.getElementById('out-reason').value.trim();
+
+  const typeClass = type === '외출' ? 'out' : 'stay';
+  const li = document.createElement('li');
+  li.className = 'record-item';
+  li.innerHTML = `
+    <div class="record-top">
+      <span class="record-type-badge ${typeClass}">${type}</span>
+      <span class="tag-pending">대기중</span>
+    </div>
+    <div class="record-time">${startDate} ${startTime} ~ ${endDate} ${endTime}</div>
+    <div class="record-reason">${reason}</div>
+  `;
+  const list = document.querySelector('#outing .record-list');
+  list.insertBefore(li, list.firstChild);
+
+  document.getElementById('out-start-date').value = '';
+  document.getElementById('out-start-time').value = '';
+  document.getElementById('out-end-date').value = '';
+  document.getElementById('out-end-time').value = '';
+  document.getElementById('out-reason').value = '';
+  document.getElementById('outing-submit').disabled = true;
+
   closeModal('outing-modal');
 }
 function submitStudy() {
-  alert('본관신청이 완료되었습니다.');
+  const date = document.getElementById('study-date').value;
+  const time = document.getElementById('study-time').value;
+  const teacher = document.getElementById('study-teacher').value;
+  const place = document.getElementById('study-place').value.trim();
+  const reason = document.getElementById('study-reason').value.trim();
+
+  const li = document.createElement('li');
+  li.className = 'record-item';
+  li.innerHTML = `
+    <div class="record-top">
+      <span class="record-type-badge study">${time}</span>
+      <span class="tag-pending">대기중</span>
+    </div>
+    <div class="record-time">${date} · ${place}</div>
+    <div class="record-reason">${teacher} / ${reason}</div>
+  `;
+  const list = document.querySelector('#study .record-list');
+  list.insertBefore(li, list.firstChild);
+
+  document.getElementById('study-date').value = '';
+  document.getElementById('study-time').value = '';
+  document.getElementById('study-teacher').value = '';
+  document.getElementById('study-place').value = '';
+  document.getElementById('study-reason').value = '';
+  document.getElementById('study-submit').disabled = true;
+
   closeModal('study-modal');
 }
 function submitYoyang() {
@@ -145,10 +197,10 @@ function setView(type, btn) {
   });
 }
 
-// ── OS 감지 → 모바일이면 폰 프레임 제거 ──
+// ── OS 감지 → PC면 안내 오버레이 표시 ──
 const ua = navigator.userAgent;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(ua);
-if (isMobile) {
-  document.body.style.background = 'var(--bg)';
-  document.getElementById('pc-left').style.display = 'none';
+if (!isMobile) {
+  document.getElementById('pc-overlay').style.display = 'flex';
+  document.getElementById('phone-screen').style.display = 'none';
 }
