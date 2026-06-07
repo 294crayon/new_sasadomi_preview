@@ -195,6 +195,10 @@ body { margin: 0; padding: 0; }
 .notice-item:last-child { border-bottom: none; }
 .notice-item:hover { background: rgba(35,186,239,0.04); }
 .notice-item.pinned { background: rgba(224,62,62,0.03); }
+.notice-item.featured { background: rgba(255,120,0,0.04); }
+.notice-item.featured:hover { background: rgba(255,120,0,0.08); }
+.notice-item.featured .notice-title { color: #e06500; }
+.notice-badge.featured-badge { background: #e06500; }
 .notice-badge { background: var(--accent-minus); color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
 .notice-content { flex: 1; display: flex; flex-direction: column; gap: 3px; }
 .notice-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
